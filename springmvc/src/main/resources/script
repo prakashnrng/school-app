@@ -1,0 +1,12 @@
+ 
+
+CREATE TABLE schoo_fee (
+feeId BIGINT not null auto_increment,
+    feePaid double NOT NULL,
+     
+    feeBal double NOT NULL,
+    feePayDate varchar(30) NOT NULL,
+    noOfInstallments varchar(30),
+    PRIMARY KEY (feeId)
+);
+  

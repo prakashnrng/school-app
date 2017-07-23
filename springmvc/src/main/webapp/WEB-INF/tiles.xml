@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">  
+
+<tiles-definitions>
+
+<definition name="login-definition" template="/WEB-INF/views/tiles/layouts/LoginHome.jsp">
+ <put-attribute name="title" value="SchoolApp"/>  
+       
+       <put-attribute name="body" value=""/>  
+       <put-attribute name="footer" value="/WEB-INF/views/tiles/template/Footer.jsp" />  
+</definition>
+
+<!--  login Page -->
+
+<definition name="LOGINDEF" extends="login-definition">
+<put-attribute name="body" value="/WEB-INF/views/login.jsp"></put-attribute>
+</definition>
+
+
+
+<definition name="user-definition" template="/WEB-INF/views/tiles/layouts/Home.jsp">
+ <put-attribute name="title" value="SchoolApp" />  
+       <put-attribute name="header" value="/WEB-INF/views/tiles/template/authheader.jsp" />  
+       <put-attribute name="lmenu" value="/WEB-INF/views/tiles/template/LeftMenu.jsp" />  
+       <put-attribute name="body" value=""/>  
+       <put-attribute name="footer" value="/WEB-INF/views/tiles/template/Footer.jsp" />  
+</definition>
+
+<!-- user list -->
+<definition name="userslist" extends="user-definition">
+<put-attribute name="body" value="/WEB-INF/views/userslist.jsp"></put-attribute>
+
+</definition>
+
+
+<!-- new User -->
+<definition name="registration" extends="user-definition">
+<put-attribute name="body" value="/WEB-INF/views/registration.jsp"></put-attribute>
+
+</definition>
+
+<!--  registration succeess -->
+<definition name="registrationsuccess" extends="user-definition">
+<put-attribute name="body" value="/WEB-INF/views/registrationsuccess.jsp"></put-attribute>
+
+</definition>
+
+<!-- Fee Page -->
+<definition name="feepaymentRecipts" extends="user-definition">
+<put-attribute name="lmenu" value=""></put-attribute>
+</definition>
+
+
+<!-- student registration page -->
+
+<definition name="addStudent" extends="user-definition">
+<put-attribute name="body" value="/WEB-INF/views/addStudent.jsp"/>
+
+</definition>
+
+
+<!-- student registration success page -->
+<definition name="studRegistrationSuccess" extends="user-definition">
+<put-attribute name="body" value="/WEB-INF/views/studRegistrationSuccess.jsp"></put-attribute>
+</definition>
+
+
+<!-- studen registration list -->
+<definition name="studRegistrationList" extends="user-definition">
+<put-attribute name="body" value="/WEB-INF/views/studRegistrationList.jsp"></put-attribute>
+
+</definition>
+
+
+<!-- fee details -->
+<definition name="FEEDETAILS" extends="user-definition">
+<put-attribute name="body" value="/WEB-INF/views/feeDetails.jsp"></put-attribute>
+
+</definition>
+
+<definition name="FEEDETAILSFORM" extends="user-definition">
+<put-attribute name="body" value="/WEB-INF/views/feepaymentRecipts.jsp"></put-attribute>
+
+</definition>
+
+ 
+<definition name="DOWNLOADPDF" extends="user-definition">
+<put-attribute name="body" value="/WEB-INF/views/feepaymentRecipts.jsp"></put-attribute>
+
+</definition>
+
+
+</tiles-definitions>

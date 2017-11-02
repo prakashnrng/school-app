@@ -237,6 +237,10 @@ public class Fee {
 
 
 
+	 
+
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -250,7 +254,6 @@ public class Fee {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((feePayDate == null) ? 0 : feePayDate.hashCode());
 		result = prime * result + ((noOfInstallments == null) ? 0 : noOfInstallments.hashCode());
-		result = prime * result + ((student == null) ? 0 : student.hashCode());
 		temp = Double.doubleToLongBits(totalFeeAmount);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
@@ -296,11 +299,6 @@ public class Fee {
 			if (other.noOfInstallments != null)
 				return false;
 		} else if (!noOfInstallments.equals(other.noOfInstallments))
-			return false;
-		if (student == null) {
-			if (other.student != null)
-				return false;
-		} else if (!student.equals(other.student))
 			return false;
 		if (Double.doubleToLongBits(totalFeeAmount) != Double.doubleToLongBits(other.totalFeeAmount))
 			return false;

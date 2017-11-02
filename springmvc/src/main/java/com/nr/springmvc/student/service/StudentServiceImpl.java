@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nr.springmvc.model.Marks;
 import com.nr.springmvc.model.Student;
 import com.nr.springmvc.student.dao.StudentDAO;
 
@@ -47,6 +48,23 @@ public class StudentServiceImpl implements StudentService{
 		 
 		return studentDao.findById(id);
 	}
+
+
+	@Override
+	public void saveStudentMarks(Marks mr) {
+	 
+		  studentDao.saveStudentMarks(mr);
+	}
+	
+	@Override
+	public List<Student> selectStudOnCriter(Student st) {
+		 
+		return studentDao.selectStudOnCriter(st);
+	}
+
+
+	 
+	
 	
 	/*@Override
 	public Double totalFee(Student st) {

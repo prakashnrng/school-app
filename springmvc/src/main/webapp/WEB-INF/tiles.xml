@@ -26,6 +26,17 @@
        <put-attribute name="footer" value="/WEB-INF/views/tiles/template/Footer.jsp" />  
 </definition>
 
+
+<definition name="test-definition" template="/WEB-INF/views/tiles/layouts/Home.jsp">
+ <put-attribute name="title" value="SchoolApp" />  
+       <put-attribute name="header" value="/WEB-INF/views/tiles/template/authheader.jsp" />  
+       <put-attribute name="lmenu" value="/WEB-INF/views/tiles/template/testMenu.jsp" />  
+       <put-attribute name="body" value=""/>  
+       <put-attribute name="footer" value="/WEB-INF/views/tiles/template/Footer.jsp" />  
+</definition>
+
+
+
 <!-- user list -->
 <definition name="userslist" extends="user-definition">
 <put-attribute name="body" value="/WEB-INF/views/userslist.jsp"></put-attribute>
@@ -60,9 +71,9 @@
 
 
 <!-- student registration success page -->
-<definition name="studRegistrationSuccess" extends="user-definition">
+ <definition name="studRegistrationSuccess" extends="user-definition">
 <put-attribute name="body" value="/WEB-INF/views/studRegistrationSuccess.jsp"></put-attribute>
-</definition>
+</definition> 
 
 
 <!-- studen registration list -->
@@ -89,5 +100,66 @@
 
 </definition>
 
+<!--  question -->
+
+<definition name="ADDQ" extends="user-definition">
+<put-attribute name="body" value="/WEB-INF/views/addquestion.jsp"></put-attribute>
+</definition>
+
+
+<definition name="ADDQSUCESS" extends="user-definition">
+<put-attribute name="body" value="/WEB-INF/views/quessucsses.jsp"></put-attribute>
+</definition>
+
+
+<!-- test -->
+<definition name="TEST" extends="user-definition">
+<put-attribute name="body" value="/WEB-INF/views/taketest.jsp"></put-attribute>
+</definition>
+
+<!-- chapter level test -->
+<definition name="CHAP" extends="user-definition">
+<put-attribute name="body" value="/"></put-attribute>
+
+</definition>
+
+
+
+<!-- Add Internal marks -->
+<definition name="ADDINTERNMRKS" extends="user-definition">
+<put-attribute name="body" value="/WEB-INF/views/addintrmarks.jsp"/>
+
+</definition>
+
+
+
+
+<definition name="selecstudoncriteria" extends="user-definition">
+<put-attribute name="body" value="/WEB-INF/views/studsearch.jsp"/>
+</definition>
+
+
+<definition name="STUDCRITLIST" extends="user-definition">
+<put-attribute name="body" value="/WEB-INF/views/studRegistrationList.jsp"></put-attribute>
+</definition>
+
+
+<definition name="INMARKSADDED" extends="user-definition">
+<put-attribute name="body" value="/WEB-INF/views/quessucsses.jsp"></put-attribute>
+
+
+</definition>
+
+
+<definition name="BESTOF3INTERNALMARKS" extends="user-definition">
+<put-attribute name="body" value="/WEB-INF/views/bestof3marks.jsp"/>
+</definition>
+
+
+
+<definition name="ERRORPAGE" extends="user-definition">
+<put-attribute name="body" value="/WEB-INF/views/error.jsp"></put-attribute>
+
+</definition>
 
 </tiles-definitions>

@@ -8,6 +8,8 @@
 
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
+ 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -87,6 +89,16 @@
 								<td><a
 									href="<c:url value='/delete-user-${stu.studentId}' />"
 									class="btn btn-danger custom-width">delete</a></td>
+							</sec:authorize>
+							<sec:authorize access="hasRole('ADMIN')">
+							
+							<td><a href="<c:url value='/addMarks-${stu.studentId} '/>" class="btn-success custom-width">AddInternalMarks</a></td>
+							
+							<td><a href="<c:url value='/getBestOfInMarks-${stu.studentId }'/>" class="btn-success custom-width">GETBSTOF3MARKS</a>
+							 <%-- <form:form action="/addmarks" commandName="STU">
+							 <form:hidden path="studentId"/>
+							 <td><input type="submit" value="AddInternalsMarks"/></td>							 
+							 </form:form> --%>
 							</sec:authorize>
 						</tr>
 					</c:forEach>

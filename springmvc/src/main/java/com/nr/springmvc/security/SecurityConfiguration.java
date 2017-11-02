@@ -43,7 +43,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
     	logger.info("SecurityConfiguration->configure(http)");
         http.authorizeRequests().antMatchers("/", "/list")
-                .access("hasRole('PRINCIPAL') or hasRole('DIRECTOR') or hasRole('ADMIN') or hasRole('USER')")
+                .access("hasRole('PRINCIPAL') or hasRole('DIRECTOR') or hasRole('ADMIN') or hasRole('USER') or hasRole('STUDENT')")
                 .antMatchers("/newuser/**", "/delete-user-*").access("hasRole('DIRECTOR') or hasRole('ADMIN')").antMatchers("/edit-user-*")
                 .access("hasRole('ADMIN') or hasRole('PRINCIPAL')").and().formLogin().loginPage("/login")
                 .loginProcessingUrl("/login").usernameParameter("ssoId").passwordParameter("password").and()

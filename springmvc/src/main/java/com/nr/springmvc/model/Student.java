@@ -1,7 +1,10 @@
 package com.nr.springmvc.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -57,8 +62,6 @@ public class Student implements Serializable {
 	@Column(name = "motherlastname", nullable = false)
 	private String motherLastName;
 
-	 
-	
 	/*
 	 * @Temporal(TemporalType.DATE)
 	 * 
@@ -93,17 +96,30 @@ public class Student implements Serializable {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "feeid")
-	Fee fee;
+	private Fee fee;
+
+	
+	/*@OneToMany(mappedBy="student",cascade = CascadeType.ALL)
+	private Collection<Marks> marks;
+	*/
+	
+	@OneToMany(mappedBy="student",cascade = CascadeType.ALL)
+	private Set<Marks> marks=new LinkedHashSet<>();
+	
+	 
 
 	public Student() {
 		super();
 
 	}
+	
+	
+
+	 
 
 	public Student(Long studentId, String admisstionNubmer, String studentFirstName, String studentLastName,
 			String fatherFirstName, String fatherLastName, String motherFirstName, String motherLastName,
-			String dateOfBirth, String gender, String grade, String section, String academicYear,
-			String studentAddress) {
+			String dateOfBirth, String gender, String grade, String section, String academicYear, String studentAddress) {
 		super();
 		this.studentId = studentId;
 		this.admisstionNubmer = admisstionNubmer;
@@ -119,7 +135,35 @@ public class Student implements Serializable {
 		this.section = section;
 		this.academicYear = academicYear;
 		this.studentAddress = studentAddress;
+		 
 	}
+
+
+
+
+
+	public Student(String admisstionNubmer, String studentFirstName, String studentLastName, String fatherFirstName,
+			String fatherLastName, String motherFirstName, String motherLastName, String dateOfBirth, String gender,
+			String grade, String section, String academicYear, String studentAddress) {
+		super();
+		this.admisstionNubmer = admisstionNubmer;
+		this.studentFirstName = studentFirstName;
+		this.studentLastName = studentLastName;
+		this.fatherFirstName = fatherFirstName;
+		this.fatherLastName = fatherLastName;
+		this.motherFirstName = motherFirstName;
+		this.motherLastName = motherLastName;
+		this.dateOfBirth = dateOfBirth;
+		this.gender = gender;
+		this.grade = grade;
+		this.section = section;
+		this.academicYear = academicYear;
+		this.studentAddress = studentAddress;
+	}
+
+
+
+
 
 	public Long getStudentId() {
 		return studentId;
@@ -241,6 +285,26 @@ public class Student implements Serializable {
 		this.fee = fee;
 	}
 
+
+
+
+
+	public Set<Marks> getMarks() {
+		return marks;
+	}
+
+
+
+
+
+	public void setMarks(Set<Marks> marks) {
+		this.marks = marks;
+	}
+
+
+
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -253,6 +317,7 @@ public class Student implements Serializable {
 		result = prime * result + ((fee == null) ? 0 : fee.hashCode());
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result + ((grade == null) ? 0 : grade.hashCode());
+		result = prime * result + ((marks == null) ? 0 : marks.hashCode());
 		result = prime * result + ((motherFirstName == null) ? 0 : motherFirstName.hashCode());
 		result = prime * result + ((motherLastName == null) ? 0 : motherLastName.hashCode());
 		result = prime * result + ((section == null) ? 0 : section.hashCode());
@@ -262,6 +327,10 @@ public class Student implements Serializable {
 		result = prime * result + ((studentLastName == null) ? 0 : studentLastName.hashCode());
 		return result;
 	}
+
+
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -312,6 +381,11 @@ public class Student implements Serializable {
 				return false;
 		} else if (!grade.equals(other.grade))
 			return false;
+		if (marks == null) {
+			if (other.marks != null)
+				return false;
+		} else if (!marks.equals(other.marks))
+			return false;
 		if (motherFirstName == null) {
 			if (other.motherFirstName != null)
 				return false;
@@ -350,6 +424,10 @@ public class Student implements Serializable {
 		return true;
 	}
 
+
+
+
+
 	@Override
 	public String toString() {
 		return "Student [studentId=" + studentId + ", admisstionNubmer=" + admisstionNubmer + ", studentFirstName="
@@ -357,9 +435,200 @@ public class Student implements Serializable {
 				+ ", fatherLastName=" + fatherLastName + ", motherFirstName=" + motherFirstName + ", motherLastName="
 				+ motherLastName + ", dateOfBirth=" + dateOfBirth + ", gender=" + gender + ", grade=" + grade
 				+ ", section=" + section + ", academicYear=" + academicYear + ", studentAddress=" + studentAddress
-				+ ", fee=" + fee + "]";
+				+ ", fee=" + fee + ", marks=" + marks + "]";
 	}
 
+
+
+
+
 	 
+
+	
+	
+	
+
+
+
+	/*public Collection<Marks> getMarks() {
+		return marks;
+	}
+
+
+
+
+
+	public void setMarks(Collection<Marks> marks) {
+		this.marks = marks;
+	}
+*/
+
+
+
+/*
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((academicYear == null) ? 0 : academicYear.hashCode());
+		result = prime * result + ((admisstionNubmer == null) ? 0 : admisstionNubmer.hashCode());
+		result = prime * result + ((dateOfBirth == null) ? 0 : dateOfBirth.hashCode());
+		result = prime * result + ((fatherFirstName == null) ? 0 : fatherFirstName.hashCode());
+		result = prime * result + ((fatherLastName == null) ? 0 : fatherLastName.hashCode());
+		result = prime * result + ((fee == null) ? 0 : fee.hashCode());
+		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
+		result = prime * result + ((grade == null) ? 0 : grade.hashCode());
+		result = prime * result + ((marks == null) ? 0 : marks.hashCode());
+		result = prime * result + ((motherFirstName == null) ? 0 : motherFirstName.hashCode());
+		result = prime * result + ((motherLastName == null) ? 0 : motherLastName.hashCode());
+		result = prime * result + ((section == null) ? 0 : section.hashCode());
+		result = prime * result + ((studentAddress == null) ? 0 : studentAddress.hashCode());
+		result = prime * result + ((studentFirstName == null) ? 0 : studentFirstName.hashCode());
+		result = prime * result + ((studentId == null) ? 0 : studentId.hashCode());
+		result = prime * result + ((studentLastName == null) ? 0 : studentLastName.hashCode());
+		return result;
+	}
+
+
+
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Student other = (Student) obj;
+		if (academicYear == null) {
+			if (other.academicYear != null)
+				return false;
+		} else if (!academicYear.equals(other.academicYear))
+			return false;
+		if (admisstionNubmer == null) {
+			if (other.admisstionNubmer != null)
+				return false;
+		} else if (!admisstionNubmer.equals(other.admisstionNubmer))
+			return false;
+		if (dateOfBirth == null) {
+			if (other.dateOfBirth != null)
+				return false;
+		} else if (!dateOfBirth.equals(other.dateOfBirth))
+			return false;
+		if (fatherFirstName == null) {
+			if (other.fatherFirstName != null)
+				return false;
+		} else if (!fatherFirstName.equals(other.fatherFirstName))
+			return false;
+		if (fatherLastName == null) {
+			if (other.fatherLastName != null)
+				return false;
+		} else if (!fatherLastName.equals(other.fatherLastName))
+			return false;
+		if (fee == null) {
+			if (other.fee != null)
+				return false;
+		} else if (!fee.equals(other.fee))
+			return false;
+		if (gender == null) {
+			if (other.gender != null)
+				return false;
+		} else if (!gender.equals(other.gender))
+			return false;
+		if (grade == null) {
+			if (other.grade != null)
+				return false;
+		} else if (!grade.equals(other.grade))
+			return false;
+		if (marks == null) {
+			if (other.marks != null)
+				return false;
+		} else if (!marks.equals(other.marks))
+			return false;
+		if (motherFirstName == null) {
+			if (other.motherFirstName != null)
+				return false;
+		} else if (!motherFirstName.equals(other.motherFirstName))
+			return false;
+		if (motherLastName == null) {
+			if (other.motherLastName != null)
+				return false;
+		} else if (!motherLastName.equals(other.motherLastName))
+			return false;
+		if (section == null) {
+			if (other.section != null)
+				return false;
+		} else if (!section.equals(other.section))
+			return false;
+		if (studentAddress == null) {
+			if (other.studentAddress != null)
+				return false;
+		} else if (!studentAddress.equals(other.studentAddress))
+			return false;
+		if (studentFirstName == null) {
+			if (other.studentFirstName != null)
+				return false;
+		} else if (!studentFirstName.equals(other.studentFirstName))
+			return false;
+		if (studentId == null) {
+			if (other.studentId != null)
+				return false;
+		} else if (!studentId.equals(other.studentId))
+			return false;
+		if (studentLastName == null) {
+			if (other.studentLastName != null)
+				return false;
+		} else if (!studentLastName.equals(other.studentLastName))
+			return false;
+		return true;
+	}
+
+
+
+
+
+	@Override
+	public String toString() {
+		return "Student [studentId=" + studentId + ", admisstionNubmer=" + admisstionNubmer + ", studentFirstName="
+				+ studentFirstName + ", studentLastName=" + studentLastName + ", fatherFirstName=" + fatherFirstName
+				+ ", fatherLastName=" + fatherLastName + ", motherFirstName=" + motherFirstName + ", motherLastName="
+				+ motherLastName + ", dateOfBirth=" + dateOfBirth + ", gender=" + gender + ", grade=" + grade
+				+ ", section=" + section + ", academicYear=" + academicYear + ", studentAddress=" + studentAddress
+				+ ", fee=" + fee + ", marks=" + marks + "]";
+	}
+
+
+
+
+
+	 */
+
+
+
+ 
+
 	 
+
+
+
+
+ 
+
+	 
+
+	 
+	/*
+	 * @Override public String toString() { return "Student [studentId=" +
+	 * studentId + ", admisstionNubmer=" + admisstionNubmer +
+	 * ", studentFirstName=" + studentFirstName + ", studentLastName=" +
+	 * studentLastName + ", fatherFirstName=" + fatherFirstName +
+	 * ", fatherLastName=" + fatherLastName + ", motherFirstName=" +
+	 * motherFirstName + ", motherLastName=" + motherLastName + ", dateOfBirth="
+	 * + dateOfBirth + ", gender=" + gender + ", grade=" + grade + ", section="
+	 * + section + ", academicYear=" + academicYear + ", studentAddress=" +
+	 * studentAddress + ", fee=" + fee + ", marks=" + marks+ "]"; }
+	 */
+
 }

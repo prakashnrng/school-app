@@ -10,6 +10,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
  
 public abstract class AbstractDao<PK extends Serializable, T> {
+	
+	
+	
      static{
     	 System.out.println("AbstractDao->s.b");
      }
@@ -37,12 +40,17 @@ public abstract class AbstractDao<PK extends Serializable, T> {
  
     public void persist(T entity) {
     	System.out.println("AbstractDao->persist()");
-        getSession().persist(entity);
+         getSession().persist(entity);
     }
  
     public void update(T entity) {
     	System.out.println("AbstractDao->update()");
         getSession().update(entity);
+    }
+    
+    public void saveorUpdate(T entity){
+    	System.out.println("AbstractDAO->saveorUpdate");
+    	getSession().saveOrUpdate(entity);
     }
  
     public void delete(T entity) {

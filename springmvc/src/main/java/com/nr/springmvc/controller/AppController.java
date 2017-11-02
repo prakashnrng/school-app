@@ -28,6 +28,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.nr.springmvc.model.Question;
+import com.nr.springmvc.model.Student;
 import com.nr.springmvc.model.User;
 import com.nr.springmvc.model.UserProfile;
 import com.nr.springmvc.service.UserProfileService;
@@ -70,6 +72,7 @@ public class AppController {
 		List<User> users = userService.findAllUsers();
 		model.addAttribute("users", users);
 		model.addAttribute("loggedinuser", getPrincipal());
+		 
 		return "userslist";
 	} 
  

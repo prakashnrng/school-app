@@ -36,7 +36,7 @@
 				        <th>Lastname</th>
 				        <th>Email</th>
 				        <th>SSO ID</th>
-				        <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
+				        <sec:authorize access="hasRole('ADMIN') or hasRole('PRINCIPAL') or hasRole('USER') or hasRole('DIRECTOR')">
 				        	<th width="100"></th>
 				        </sec:authorize>
 				        <sec:authorize access="hasRole('ADMIN')">
